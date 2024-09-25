@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screenshot Service</title>
+    <link rel="stylesheet" href="./styles/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Screenshot Service</h1>
+
+        <!-- Form for entering URL -->
+        <form id="loadUrlForm" onsubmit="return takeScreenshot();">
+            <input type="url" id="urlInput" placeholder="Enter a URL (e.g. https://google.com)" required>
+            <button type="submit">Take Screenshot!</button>
+        </form>
+
+        <!-- Screenshot result -->
+        <div id="screenshotResult" style="margin-top: 20px; display: none;">
+            <h2>Captured Screenshot</h2>
+            <img id="screenshotImage" src="" alt="Captured Screenshot" style="max-width: 100%;">
+            <br>
+            <a id="downloadLink" href="#" download="screenshot.png">
+                <button>Download Screenshot</button>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Take screenshot using ScreenshotLayer API
+        function takeScreenshot() {
+            const url = document.getElementById('urlInput').value;
+            fetch(`/screenshotlayer?url=${encodeURIComponent(url)}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.image) {
+                        const img = document.getElementById('screenshotImage');
+                        const downloadLink = document.getElementById('downloadLink');
+
+                        // Set the image and download link
+                        img.src = `data:image/png;base64,${data.image}`;
+                        downloadLink.href = `data:image/png;base64,${data.image}`;
+                        
+                        // Show the result
+                        document.getElementById('screenshotResult').style.display = 'block';
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+
+            return false; // Prevent form submission
+        }
+    </script>
+</body>
+</html>
