@@ -3,10 +3,12 @@ import bodyParser from 'body-parser';
 import axios from 'axios';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import dotenv from 'dotenv';
 
+dotenv.config();
 const app = express();
-const PORT = 3000;
-const apiKey = 'addd69afe5e7fd28526831a79fa1519a'; // ScreenshotLayer API key
+const PORT = process.env.PORT || 3000;
+const apiKey = process.env.API_KEY; // ScreenshotLayer API key
 
 // Middleware to parse URL-encoded form data and serve static files
 app.use(bodyParser.urlencoded({ extended: true }));
