@@ -22,7 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Home route - renders the form
 app.get('/', (req, res) => {
-    res.render('index', { screenshotBase64: null });
+    res.render('index2', { screenshotBase64: null });
 });
 
 // Screenshot route using ScreenshotLayer API

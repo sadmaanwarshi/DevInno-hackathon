@@ -1,0 +1,214 @@
+/* Base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #18329b, #da31da);
+    color: white;
+    font-family: 'Roboto', Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Header */
+header {
+    background-color: transparent;
+    text-align: center;
+    padding: 30px 0 20px;
+}
+
+h1 {
+    font-family: Georgia, serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #ffffff;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    animation: slide-in 1.5s ease-in-out;
+    background: linear-gradient(135deg, #f8cdda, #1d2b64);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: white;
+}
+
+.team-name {
+    font-family: cursive;
+    position: absolute;
+    border: 1px solid black;
+    top: 20px;
+    right: 30px;
+    font-weight: 600;
+    font-size: 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 8px 12px;
+    border-radius: 5px;
+    color: #ffffff;
+    animation: fade-in 1s ease-in-out;
+}
+
+/* Main content */
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0 20px;
+    margin-top: 40px;
+}
+
+article {
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 1000px; /* Increased the max-width */
+    animation: fade-in-up 1s ease-in-out;
+    transform: translateY(-50px);
+}
+
+/* Form */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid #26c;
+    border-radius: 12px;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+input {
+    width: 100%;
+    background-color: transparent;
+    color: white;
+    border: 0;
+    padding: 15px;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    background-color: #2a2a2a;
+    color: #00d1ff;
+}
+
+button {
+    background-color: #1a73e8;
+    border: 0;
+    color: white;
+    padding: 15px;
+    font-size: 1rem;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #145bb5;
+    transform: scale(1.05);
+}
+
+/* Screenshot result */
+#screenshotResult {
+    margin-top: 20px;
+    display: none; /* Initially hidden */
+}
+
+#screenshotImage{
+    margin-top: 20px;
+}
+
+.screenshot-container {
+    margin-top: 30px;
+}
+
+img {
+    width: 100%;
+    display: block;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    animation: fade-in 1s forwards;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: transparent;
+    color: white;
+    font-size: 0.9rem;
+    box-shadow: 0px -4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Animations */
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slide-in {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    .team-name {
+        font-size: 0.9rem;
+        top: 5px;
+        right: 10px;
+    }
+
+    article {
+        padding: 20px;
+    }
+
+    button {
+        padding: 10px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    input {
+        padding: 12px;
+    }
+
+    button {
+        font-size: 0.9rem;
+    }
+
+    footer {
+        font-size: 0.8rem;
+    }
+}
