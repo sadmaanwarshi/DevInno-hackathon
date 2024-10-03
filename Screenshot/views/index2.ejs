@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Screenshot App</title>
+    <link rel="stylesheet" href="./styles/style2.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Website Screenshot App</h1>
+        <div class="team-name">Tech Titans</div>
+    </header>
+    
+    <main>
+        <article>
+            <form id="loadUrlForm" onsubmit="return takeScreenshot();">
+                <input type="url" name="url" id="urlInput" placeholder="Enter website URL (e.g., https://google.com)" required>
+                <button type="submit">Capture Screenshot</button>
+            </form>
+
+            <div id="screenshotResult" style="margin-top: 20px; display: none;">
+                <h2>Captured Screenshot</h2>
+                <img id="screenshotImage" alt="Captured Screenshot" style="max-width: 100%; display: none;">
+                <br>
+                <a id="downloadLink" href="#" download="screenshot.png">
+                    <button>Download Screenshot</button>
+                </a>
+            </div>
+        </article>
+    </main>
+    <footer>
+        <p>Powered by Tech Titans &copy; 2024</p>
+    </footer>
+
+    <script>
+        // Take screenshot using API
+        function takeScreenshot() {
+            const url = document.getElementById('urlInput').value;
+            fetch(`/screenshotlayer?url=${encodeURIComponent(url)}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.image) {
+                        const img = document.getElementById('screenshotImage');
+                        const downloadLink = document.getElementById('downloadLink');
+
+                        img.src = `data:image/png;base64,${data.image}`;
+                        downloadLink.href = `data:image/png;base64,${data.image}`;
+
+                        img.style.display = 'block';
+                        document.getElementById('screenshotResult').style.display = 'block';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Failed to capture screenshot. Please try again.');
+                });
+
+            return false; // Prevent form submission
+        }
+    </script>
+</body>
+</html>
