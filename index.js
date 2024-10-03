@@ -6,6 +6,9 @@ import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 
 dotenv.config();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3000;
 const apiKey = process.env.API_KEY; // ScreenshotLayer API key
@@ -16,10 +19,10 @@ app.use(express.static("public"));
 
 // Set the view engine to EJS
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 
 // Resolve file paths
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Home route - renders the form
